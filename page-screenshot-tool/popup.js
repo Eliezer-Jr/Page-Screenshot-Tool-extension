@@ -8,6 +8,7 @@ const elements = {
   loading: document.querySelector("#loading-state"),
   loadingTitle: document.querySelector("#loading-title"),
   loadingDetail: document.querySelector("#loading-detail"),
+  livePreviewShell: document.querySelector("#live-preview-shell"),
   livePreview: document.querySelector("#live-preview"),
   progress: document.querySelector("#progress-bar"),
   meta: document.querySelector("#image-meta"),
@@ -83,6 +84,7 @@ function canvasToBlob(canvas) {
 function clearLivePreview() {
   const context = elements.livePreview.getContext("2d");
   context.clearRect(0, 0, elements.livePreview.width, elements.livePreview.height);
+  elements.livePreviewShell.hidden = true;
 }
 
 function drawLivePreview(image) {
@@ -95,6 +97,7 @@ function drawLivePreview(image) {
   context.fillStyle = "#ffffff";
   context.fillRect((canvas.width - width) / 2, (canvas.height - height) / 2, width, height);
   context.drawImage(image, (canvas.width - width) / 2, (canvas.height - height) / 2, width, height);
+  elements.livePreviewShell.hidden = false;
 }
 
 function prepareCompositePreview(totalWidth, totalHeight) {
@@ -130,6 +133,7 @@ function drawCompositePreviewTile(image, x, y, metrics, previewLayout) {
     (x.end - x.start) * previewLayout.scale,
     (y.end - y.start) * previewLayout.scale
   );
+  elements.livePreviewShell.hidden = false;
 }
 
 function buildAxis(total, viewport) {
