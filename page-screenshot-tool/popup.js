@@ -15,6 +15,7 @@ const elements = {
   status: document.querySelector("#status"),
   download: document.querySelector("#download"),
   copy: document.querySelector("#copy"),
+  fullPreview: document.querySelector("#full-preview"),
   retake: document.querySelector("#retake")
 };
 
@@ -161,6 +162,7 @@ function setBusy(isBusy, title = "Capturing page…", detail = "Preparing", prog
   elements.captureFull.disabled = isBusy;
   elements.download.disabled = isBusy || !state.record;
   elements.copy.disabled = isBusy || !state.record;
+  elements.fullPreview.disabled = isBusy || !state.record;
   elements.retake.disabled = isBusy || !state.record;
   elements.loading.hidden = !isBusy;
   elements.loadingTitle.textContent = title;
@@ -202,6 +204,7 @@ async function setRecord(record, persist = true) {
   elements.meta.hidden = false;
   elements.download.disabled = false;
   elements.copy.disabled = false;
+  elements.fullPreview.disabled = false;
   elements.retake.disabled = false;
   if (persist) await ScreenshotStore.save(record);
 }
@@ -419,6 +422,7 @@ async function retakeScreenshot() {
   elements.previewStage.classList.add("empty");
   elements.download.disabled = true;
   elements.copy.disabled = true;
+  elements.fullPreview.disabled = true;
   elements.retake.disabled = true;
   hideStatus();
   await ScreenshotStore.clear();
@@ -429,7 +433,14 @@ elements.captureFull.addEventListener("click", captureFullPage);
 elements.download.addEventListener("click", downloadScreenshot);
 elements.copy.addEventListener("click", copyScreenshot);
 elements.retake.addEventListener("click", retakeScreenshot);
-elements.openPreview.addEventListener("click", () => chrome.tabs.create({ url: chrome.runtime.getURL("preview.html") }));
+function openFullPreview() {
+  if (!state.record) return;
+  chrome.tabs.create({ url: chrome.runtime.getURL("preview.html") });
+}
+
+elements.openPreview.addEventListener("click", openFullPreview);
+elements.fullPreview.addEventListener("click", openFullPreview);
+elements.preview.addEventListener("click", openFullPreview);
 
 window.addEventListener("pagehide", () => {
   if (state.capturing && state.captureTabId) {

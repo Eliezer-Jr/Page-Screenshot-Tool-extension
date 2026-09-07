@@ -140,7 +140,7 @@ h1 { margin: 0; font-size: 15px; line-height: 1.25; letter-spacing: -.01em; }
 .preview-stage.empty { background: #f8f9fb; }
 .empty-state { display: grid; place-items: center; color: #929bad; font-size: 10px; }
 .empty-state svg { width: 41px; margin-bottom: 8px; fill: none; stroke: #b6bdca; stroke-width: 1.4; }
-#screenshot-preview { width: 100%; height: 100%; object-fit: contain; }
+#screenshot-preview { width: 100%; height: 100%; object-fit: contain; cursor: zoom-in; }
 .image-meta { color: var(--muted); font-size: 9px; font-variant-numeric: tabular-nums; }
 
 .open-preview {
@@ -244,7 +244,8 @@ h1 { margin: 0; font-size: 15px; line-height: 1.25; letter-spacing: -.01em; }
 .action-button:hover:not(:disabled), .retake-button:hover:not(:disabled) { border-color: #aebbd0; background: #f5f7fa; }
 .action-button:disabled, .retake-button:disabled { opacity: .42; cursor: not-allowed; }
 .action-button svg, .retake-button svg { width: 14px; fill: none; stroke: currentColor; stroke-width: 1.8; }
-.retake-button { grid-column: 1 / -1; border-color: transparent; color: var(--muted); background: transparent; }
+.full-preview-button { color: #2455a6; border-color: #cbd9f2; background: #f5f8ff; }
+.retake-button { border-color: transparent; color: var(--muted); background: transparent; }
 
 footer { display: flex; align-items: center; justify-content: center; gap: 6px; margin-top: 11px; color: #7c879a; font-size: 9px; }
 .privacy-dot { width: 6px; height: 6px; border-radius: 50%; background: #31a36f; box-shadow: 0 0 0 3px rgb(49 163 111 / 10%); }
