@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Screenshot Preview</title>
+    <link rel="stylesheet" href="preview.css">
+  </head>
+  <body>
+    <header class="toolbar">
+      <div class="identity">
+        <div class="brand-icon" aria-hidden="true"></div>
+        <div>
+          <h1>Screenshot Preview</h1>
+          <p id="metadata">Loading capture…</p>
+        </div>
+      </div>
+      <div class="toolbar-actions">
+        <div class="zoom-controls" role="group" aria-label="Zoom controls">
+          <button id="fit" type="button" class="active">Fit</button>
+          <button id="actual" type="button">100%</button>
+        </div>
+        <button id="copy" type="button">Copy PNG</button>
+        <button id="download" type="button" class="primary">Download PNG</button>
+      </div>
+    </header>
+
+    <main id="viewer" class="viewer fit-mode">
+      <div id="message" class="message">Loading your screenshot…</div>
+      <img id="image" alt="Full size captured webpage" hidden>
+    </main>
+    <div id="toast" class="toast" role="status" aria-live="polite" hidden></div>
+
+    <script src="image-store.js"></script>
+    <script src="preview.js"></script>
+  </body>
+</html>

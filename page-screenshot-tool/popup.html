@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Page Screenshot Tool</title>
+    <link rel="stylesheet" href="popup.css">
+  </head>
+  <body>
+    <main class="app-shell">
+      <header class="app-header">
+        <div class="brand-mark" aria-hidden="true">
+          <span></span>
+        </div>
+        <div>
+          <h1>Page Screenshot Tool</h1>
+          <p>Private, local captures</p>
+        </div>
+      </header>
+
+      <section class="card capture-card" aria-labelledby="capture-heading">
+        <div class="section-heading">
+          <span class="eyebrow">Capture</span>
+          <span class="shortcut">PNG</span>
+        </div>
+        <h2 id="capture-heading" class="sr-only">Capture options</h2>
+        <button id="capture-visible" class="capture-button primary" type="button">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7V5a1 1 0 0 1 1-1h2M17 4h2a1 1 0 0 1 1 1v2M20 17v2a1 1 0 0 1-1 1h-2M7 20H5a1 1 0 0 1-1-1v-2M7 9h10v6H7z"/></svg>
+          <span><strong>Capture Visible Area</strong><small>Current browser viewport</small></span>
+        </button>
+        <button id="capture-full" class="capture-button secondary" type="button">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 4h8M8 20h8M12 4v16m-3-3 3 3 3-3M9 7l3-3 3 3"/></svg>
+          <span><strong>Capture Full Page</strong><small>Scroll and stitch the entire page</small></span>
+        </button>
+      </section>
+
+      <section class="card preview-card" aria-labelledby="preview-heading">
+        <div class="section-heading">
+          <span id="preview-heading" class="eyebrow">Preview</span>
+          <span id="image-meta" class="image-meta" hidden></span>
+        </div>
+
+        <div id="preview-stage" class="preview-stage empty">
+          <div id="empty-state" class="empty-state">
+            <svg viewBox="0 0 48 48" aria-hidden="true"><rect x="7" y="10" width="34" height="28" rx="4"/><path d="m12 32 8-8 6 6 4-4 6 6M17 19h.01"/></svg>
+            <span>Your screenshot will appear here</span>
+          </div>
+          <img id="screenshot-preview" alt="Captured webpage preview" hidden>
+          <button id="open-preview" class="open-preview" type="button" aria-label="Open large preview" hidden>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 5h5v5M19 5l-7 7M10 19H5v-5M5 19l7-7"/></svg>
+          </button>
+          <div id="loading-state" class="loading-state" hidden>
+            <div class="live-preview-shell">
+              <canvas id="live-preview" width="280" height="208" aria-label="Live screenshot preview"></canvas>
+              <span>Live preview</span>
+            </div>
+            <div class="loading-copy">
+              <span class="spinner"></span>
+              <strong id="loading-title">Capturing page…</strong>
+              <span id="loading-detail">Preparing</span>
+              <div class="progress-track"><span id="progress-bar"></span></div>
+            </div>
+          </div>
+        </div>
+
+        <div id="status" class="status" role="status" aria-live="polite" hidden></div>
+
+        <div class="action-grid">
+          <button id="download" class="action-button" type="button" disabled>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12m-4-4 4 4 4-4M5 20h14"/></svg>
+            Download PNG
+          </button>
+          <button id="copy" class="action-button" type="button" disabled>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="8" y="8" width="11" height="11" rx="2"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2"/></svg>
+            Copy Screenshot
+          </button>
+          <button id="retake" class="retake-button" type="button" disabled>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12a8 8 0 1 0 2.34-5.66L4 8.68M4 4v4.68h4.68"/></svg>
+            Retake Screenshot
+          </button>
+        </div>
+      </section>
+
+      <footer><span class="privacy-dot"></span> Images never leave your browser</footer>
+    </main>
+
+    <script src="image-store.js"></script>
+    <script src="popup.js"></script>
+  </body>
+</html>
