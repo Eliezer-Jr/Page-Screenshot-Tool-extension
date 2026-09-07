@@ -97,6 +97,41 @@ function drawLivePreview(image) {
   context.drawImage(image, (canvas.width - width) / 2, (canvas.height - height) / 2, width, height);
 }
 
+function prepareCompositePreview(totalWidth, totalHeight) {
+  const canvas = elements.livePreview;
+  const context = canvas.getContext("2d");
+  const scale = Math.min(canvas.width / totalWidth, canvas.height / totalHeight);
+  const width = totalWidth * scale;
+  const height = totalHeight * scale;
+  const offsetX = (canvas.width - width) / 2;
+  const offsetY = (canvas.height - height) / 2;
+  context.clearRect(0, 0, canvas.width, canvas.height);
+  context.fillStyle = "#ffffff";
+  context.fillRect(offsetX, offsetY, width, height);
+  return { context, scale, offsetX, offsetY };
+}
+
+function drawCompositePreviewTile(image, x, y, metrics, previewLayout) {
+  const sourceScaleX = image.naturalWidth / metrics.viewportWidth;
+  const sourceScaleY = image.naturalHeight / metrics.viewportHeight;
+  const sourceX = Math.max(0, (x.start - x.scroll) * sourceScaleX);
+  const sourceY = Math.max(0, (y.start - y.scroll) * sourceScaleY);
+  const sourceWidth = Math.min((x.end - x.start) * sourceScaleX, image.naturalWidth - sourceX);
+  const sourceHeight = Math.min((y.end - y.start) * sourceScaleY, image.naturalHeight - sourceY);
+
+  previewLayout.context.drawImage(
+    image,
+    sourceX,
+    sourceY,
+    sourceWidth,
+    sourceHeight,
+    previewLayout.offsetX + x.start * previewLayout.scale,
+    previewLayout.offsetY + y.start * previewLayout.scale,
+    (x.end - x.start) * previewLayout.scale,
+    (y.end - y.start) * previewLayout.scale
+  );
+}
+
 function buildAxis(total, viewport) {
   if (!Number.isFinite(total) || !Number.isFinite(viewport) || total <= 0 || viewport <= 0) {
     throw new Error("The page reported invalid dimensions.");
@@ -231,6 +266,7 @@ async function captureFullPage() {
     const xAxis = buildAxis(metrics.totalWidth, metrics.viewportWidth);
     const yAxis = buildAxis(metrics.totalHeight, metrics.viewportHeight);
     const tileCount = xAxis.length * yAxis.length;
+    const livePreviewLayout = prepareCompositePreview(metrics.totalWidth, metrics.totalHeight);
     let completed = 0;
     let canvas;
     let context;
@@ -273,9 +309,9 @@ async function captureFullPage() {
         }
 
         const image = await loadImage(result.dataUrl);
-        drawLivePreview(image);
         const sourceScaleX = image.naturalWidth / metrics.viewportWidth;
         const sourceScaleY = image.naturalHeight / metrics.viewportHeight;
+        drawCompositePreviewTile(image, x, y, metrics, livePreviewLayout);
 
         if (!canvas) {
           const nativeScale = Math.min(sourceScaleX, sourceScaleY);

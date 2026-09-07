@@ -96,10 +96,12 @@
       const styleElement = document.createElement("style");
       styleElement.dataset.pageScreenshotTool = "capture";
       styleElement.textContent = `
-        html { scroll-behavior: auto !important; }
+        html, body { scroll-behavior: auto !important; scroll-snap-type: none !important; }
         *, *::before, *::after {
           animation-play-state: paused !important;
           caret-color: transparent !important;
+          scroll-snap-align: none !important;
+          scroll-snap-stop: normal !important;
         }
         ::-webkit-scrollbar { width: 0 !important; height: 0 !important; }
       `;
