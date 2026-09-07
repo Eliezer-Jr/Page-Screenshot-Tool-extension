@@ -1,3 +1,11 @@
+/**
+ * Page Screenshot Tool
+ * Copyright (c) 2026 ELIEZER MAWULI JUNIOR. All rights reserved.
+ *
+ * Preview blueprint: read latest local PNG -> fit/100% viewer
+ * -> optional clipboard copy or user-approved download.
+ */
+
 const image = document.querySelector("#image");
 const viewer = document.querySelector("#viewer");
 const message = document.querySelector("#message");

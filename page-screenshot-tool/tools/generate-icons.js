@@ -1,4 +1,9 @@
-/* Generates the extension's dependency-free PNG icons. Run with: node tools/generate-icons.js */
+/**
+ * Page Screenshot Tool icon generator
+ * Copyright (c) 2026 ELIEZER MAWULI JUNIOR. All rights reserved.
+ * Blueprint: draw RGBA pixels -> encode PNG chunks -> write extension icons.
+ * Run with: node tools/generate-icons.js
+ */
 const fs = require("node:fs");
 const path = require("node:path");
 const zlib = require("node:zlib");

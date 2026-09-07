@@ -1,3 +1,9 @@
+/*
+ * Page Screenshot Tool UI
+ * Copyright (c) 2026 ELIEZER MAWULI JUNIOR. All rights reserved.
+ * Blueprint: tokens -> compact cards -> capture states -> responsive actions.
+ */
+
 :root {
   color-scheme: light;
   --ink: #172033;

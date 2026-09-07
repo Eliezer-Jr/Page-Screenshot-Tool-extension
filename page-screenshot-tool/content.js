@@ -1,3 +1,12 @@
+/**
+ * Page Screenshot Tool
+ * Copyright (c) 2026 ELIEZER MAWULI JUNIOR. All rights reserved.
+ *
+ * Full-page blueprint:
+ * save page state -> stabilize lazy content -> scroll each tile
+ * -> manage fixed/sticky elements -> restore the original page state
+ */
+
 (() => {
   if (globalThis.__PAGE_SCREENSHOT_TOOL__) return;
 

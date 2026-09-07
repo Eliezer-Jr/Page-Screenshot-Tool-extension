@@ -1,3 +1,12 @@
+/**
+ * Page Screenshot Tool
+ * Copyright (c) 2026 ELIEZER MAWULI JUNIOR. All rights reserved.
+ *
+ * UI blueprint:
+ * capture request -> progressive tile preview -> canvas stitch
+ * -> local PNG Blob -> preview, clipboard, or download
+ */
+
 const elements = {
   captureVisible: document.querySelector("#capture-visible"),
   captureFull: document.querySelector("#capture-full"),

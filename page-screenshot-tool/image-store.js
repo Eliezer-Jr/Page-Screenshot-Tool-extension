@@ -1,3 +1,11 @@
+/**
+ * Page Screenshot Tool
+ * Copyright (c) 2026 ELIEZER MAWULI JUNIOR. All rights reserved.
+ *
+ * Storage blueprint: PNG Blob -> extension IndexedDB -> popup/preview page.
+ * Screenshot data remains local and is never sent to an external service.
+ */
+
 const DATABASE_NAME = "page-screenshot-tool";
 const STORE_NAME = "screenshots";
 const LATEST_KEY = "latest";

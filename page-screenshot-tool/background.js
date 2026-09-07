@@ -1,3 +1,13 @@
+/**
+ * Page Screenshot Tool
+ * Copyright (c) 2026 ELIEZER MAWULI JUNIOR. All rights reserved.
+ *
+ * Architecture blueprint:
+ * Popup UI -> service worker -> active browser tab
+ *                         |-> inject capture helper
+ *                         `-> pace visible-tab PNG captures
+ */
+
 const RESTRICTED_PAGE = /^(chrome|edge|about|devtools|chrome-extension|edge-extension):/i;
 const MIN_CAPTURE_INTERVAL_MS = 525;
 let lastVisibleCaptureAt = 0;

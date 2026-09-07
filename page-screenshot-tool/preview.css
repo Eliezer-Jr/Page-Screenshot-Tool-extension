@@ -1,3 +1,9 @@
+/*
+ * Page Screenshot Tool full-screen preview
+ * Copyright (c) 2026 ELIEZER MAWULI JUNIOR. All rights reserved.
+ * Blueprint: fixed toolbar + scrollable fit/actual-size image workspace.
+ */
+
 :root { color-scheme: light; --ink: #182135; --muted: #697386; --accent: #2563eb; }
 * { box-sizing: border-box; }
 html, body { height: 100%; }
